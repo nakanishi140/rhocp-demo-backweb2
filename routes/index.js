@@ -14,7 +14,7 @@ const router = express.Router();
 
 // デフォルトルーティング
 router.get('/back1', function (request, response) {
-	response.send('{"param1":"hello2","param2":"back1"}');
+	response.send('{"param1":"hello","param2":"back1"}');
 });
 
 
