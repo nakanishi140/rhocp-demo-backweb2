@@ -4,4 +4,5 @@ RUN git clone https://github.com/yuu-ymt/rhocp-demo-backweb2.git
 RUN mv rhocp-demo-backweb2/* ./
 RUN chgrp -R 0 /root/app &&  chmod -R g=u /root/app
 USER 1001
+EXPOSE 8080
 ENTRYPOINT ["node","app.js"]
