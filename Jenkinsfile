@@ -41,7 +41,7 @@ pipeline {
           openshift.withCluster() {
             openshift.withProject() {
               echo "Create Tag Image: backweb2"
-              openshift.tag("backweb2:latest", "backweb2:v1")
+              openshift.tag("backweb2:1.0", "backweb2:1.1")
             }
           }
         }
