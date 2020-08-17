@@ -13,7 +13,6 @@ const express = require('express');
 const http = require("http");
 const router = express.Router();
 
-<<<<<<< HEAD
 // routing : title
 router.get('/back2_find', function (request, response) {
   
@@ -53,12 +52,6 @@ router.get('/back2_find', function (request, response) {
     tmp1.image = "cold-1284029_1920.jpg";
     tmp1.headline = "冬の空でも快適に";
     tmp1.sub_headline = "気軽なダウン、UGスタイル";
-=======
-// デフォルトルーティング
-router.get('/back2', function (request, response) {
-	response.send('{"param1":"hello","param2":"back2"}');
-});
->>>>>>> 571f57aab2dbaabf75b7db67a39d3d194a275761
 
     tmp2.id = "22";
     tmp2.image = "cold-1284028_1920.jpg";
