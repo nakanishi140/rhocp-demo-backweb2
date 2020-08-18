@@ -47,7 +47,8 @@ router.get('/back2_find', function (request, response) {
   } else if (param.indexOf("冬") >= 0) {
     let tmp1={},tmp2={},tmp3 = {},tmp4 = {},tmp5 = {};
     let obj = {};
-    obj.json =[tmp1,tmp2,tmp3,tmp4,tmp5];
+    //obj.json =[tmp1,tmp2,tmp3,tmp4,tmp5];
+    obj.json =[tmp3,tmp4,tmp5];
     tmp1.id = "21";
     tmp1.image = "cold-1284029_1920.jpg";
     tmp1.headline = "冬の空でも快適に";
@@ -62,7 +63,7 @@ router.get('/back2_find', function (request, response) {
     tmp3.image = "fog-3914967_1920.jpg";
     tmp3.headline = "冬の朝";
     tmp3.sub_headline = "厳寒の中でも快適で暖かいスタイルファッション";
-
+    
     tmp4.id = "24";
     tmp4.image = "fashion-1063100_1920.jpg";
     tmp4.headline = "UGスタイル";
