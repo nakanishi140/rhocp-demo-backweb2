@@ -13,63 +13,62 @@ const express = require('express');
 const http = require("http");
 const router = express.Router();
 
-// デフォルトルーティング
-router.get('/ddddd', function (request, response) {
-	response.send('{"param1":"hello","param2":"back2"}');
+
+/*	--------------------------------------------------------------------------/
+ *	search title data
+ *	-------------------------------------------------------------------------*/	
+router.get('/back2_find', function (request, response) {
+    let param=request.query.key;
+    let url = "/api/demo?category3="+encodeURIComponent(param);
+    find(request, response,url);
 });
 
 
-// デフォルトルーティング
-router.get('/back2', function (request, response) {
+/*	--------------------------------------------------------------------------/
+ *	common : find
+ *	-------------------------------------------------------------------------*/	
+function find(request,response,url) {
 	let totalrr = {};
 	totalrr.restdb = {};
-	totalrr.restdb.body = '';
-	totalrr.restdb.status = '';
 	
 	let promise = Promise.resolve();
 	promise
 		.then(call_restdb)
-		.then((result) => {
-			return new Promise(function(resolve, reject){
-				totalrr.restdb = result;
-            	resolve(1);
-			});
-		})
-		.then(send_data)
-		.then((result) => {
-			return new Promise(function(resolve, reject){
-				resolve(2);
-			});
-		});
-	
-	
-	
+		.then(send_data);
+
 	function call_restdb() {
 		return new Promise((resolve,reject) => {
-			var options = {
-				protocol: "http:",
-				host: "restdb",
-				port: 8080,
-				path: "/api/demo2",
-				method: "GET"
-			};
-			const req = http.request(options,(res)=>{
-				let rr = {};
-				var body = '';
-				rr.status = res.statusCode;
-				res.setEncoding("utf-8");
-				res.on("data",(chunk) => {
-					body += chunk;
-				});
-				res.on("end",(chunk)=>{
-					rr.body = body;
-					resolve(rr);
-				});
-			});
-			req.end();
-		});
+          var options = {
+              protocol: "http:",
+              host: "restdb",
+              port: 8080,
+              path: url,
+              method: "GET"
+          };
+          let rr = {};  
+          rr.status = ''; 
+          rr.body =  'Service restdb Unavailable';
+          totalrr.restdb = rr;
+          const req = http.request(options,(res)=>{
+              let body = '';
+              rr.status = res.statusCode;
+              res.setEncoding("utf-8");
+              res.on("data",(chunk) => {
+                  console.log(chunk);
+                  body += chunk;
+              });
+              res.on("end",(chunk)=>{
+                  rr.body = body;
+                  resolve(rr);
+              });
+          });
+          req.on('error',(error) => {
+              console.log(error.message);
+              resolve(rr);
+          });
+          req.end();
+      });
 	}
-	
 	
 	function send_data() {
 		return new Promise((resolve,reject) => {
@@ -77,8 +76,7 @@ router.get('/back2', function (request, response) {
 			resolve("render complete");
 		});
 	}
-	
-});
+}
 
 
 module.exports = router;
