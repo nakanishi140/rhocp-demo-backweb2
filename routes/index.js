@@ -25,7 +25,7 @@ router.get('/back2_find', function (request, response) {
     obj.json =[tmp1,tmp2,tmp3,tmp4];
     tmp1.id = "21";
     tmp1.image = "blue-2564660_1920.jpg";
-    tmp1.headline = "アウトドアスタイル!!";
+    tmp1.headline = "アウトドアスタイル";
     tmp1.sub_headline = "日常でも快適に着られるアウトドアスタイルファッション";
 
     tmp2.id = "22";
